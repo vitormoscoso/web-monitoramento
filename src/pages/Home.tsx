@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useGetAuth } from "../service/useGetAuth";
-import { useGetLastData } from "../service/useGetLastData";
 import CardComponent from "../components/CardComponent";
+import Header from "../components/Header";
+import { useGetLastData } from "../service/useGetLastData";
 
 export default function Home() {
   const [currentData, setCurrentData] = useState<any>({});
@@ -15,30 +15,42 @@ export default function Home() {
     getCurrentData();
   }, []);
 
-  useGetAuth("vitor@email.com", "123456");
-
-  console.log("home: ",currentData);
-  
-
   return (
-    <div
-      style={{
-        width: "100%",
-        position: "fixed",
-        height: "100vh",
-        backgroundColor: "whitesmoke",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <>
+      <style>
+        {`
+          body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+          }
+        `}
+      </style>
+      <Header />
       <div
         style={{
-          width: "20%",
+          width: "100%",
+          height: "100vh",
+          boxSizing: "border-box",
+          backgroundColor: "whitesmoke",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <CardComponent data={currentData}/>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CardComponent data={currentData} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
