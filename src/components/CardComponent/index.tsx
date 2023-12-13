@@ -1,6 +1,8 @@
 import { Button, Divider, Paper, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function CardComponent({ data }: any) {
+  const navigate = useNavigate();
   return (
     <Paper
       elevation={3}
@@ -34,7 +36,9 @@ export default function CardComponent({ data }: any) {
       >
         {data?.timestamp}
       </Typography>
-      <Button sx={{ marginTop: 1 }}>Histórico</Button>
+      <Button sx={{ marginTop: 1 }} onClick={() => navigate(`/historico`)}>
+        Histórico
+      </Button>
     </Paper>
   );
 }
