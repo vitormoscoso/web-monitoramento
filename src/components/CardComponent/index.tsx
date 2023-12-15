@@ -1,38 +1,47 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Typography,
-} from "@mui/material";
-export default function CardComponent({ data }: any) {
-  console.log("card: ", data);
+import { Button, Divider, Paper, Typography } from "@mui/material";
+import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router-dom";
 
+export default function CardComponent({ data }: any) {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const navigate = useNavigate();
   return (
-    <Card
-      variant="outlined"
+    <Paper
+      elevation={3}
       sx={{
-        width: "100%",
-        height: "100%",
+        margin: 2,
+        padding: 2,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center",
+        width: isMobile ? "90%" : "20%", // Largura ajustável para dispositivos móveis
+        maxWidth: "400px", // Limita a largura máxima em dispositivos maiores
       }}
     >
-      <CardContent>
-        <Typography
-          variant="h5"
-          component="div"
-          sx={{ display: "flex", justifyContent: "center" }}
-        >
-          {data?.value}
-        </Typography>
-        <Typography variant="body2">{data?.timestamp}</Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Histórico</Button>
-      </CardActions>
-    </Card>
+      <Typography
+        variant="h6"
+        component="div"
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
+        Última medição
+      </Typography>
+      <Divider sx={{ marginTop: 1, marginBottom: 1 }} />
+      <Typography
+        variant="h6"
+        component="div"
+        sx={{ display: "flex", justifyContent: "center", marginTop: 1 }}
+      >
+        {data?.value}
+      </Typography>
+      <Typography
+        variant="subtitle1"
+        sx={{ marginTop: 1, display: "flex", justifyContent: "center" }}
+      >
+        {data?.timestamp}
+      </Typography>
+      <Button sx={{ marginTop: 1 }} onClick={() => navigate(`/historico`)}>
+        Histórico
+      </Button>
+    </Paper>
   );
 }
