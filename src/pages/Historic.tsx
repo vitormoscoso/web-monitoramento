@@ -2,6 +2,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { DataItem, getAllData } from "../service/GetAllData";
+import { useMediaQuery } from "react-responsive";
 
 const columns: GridColDef<DataItem>[] = [
   {
@@ -22,6 +23,7 @@ const columns: GridColDef<DataItem>[] = [
 
 export default function Historic() {
   const [data, setData] = useState<DataItem[]>([]);
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   async function getData() {
     const allData = await getAllData();
@@ -30,7 +32,7 @@ export default function Historic() {
 
   useEffect(() => {
     getData();
-  }, []);  
+  }, []);
 
   return (
     <>
@@ -41,7 +43,7 @@ export default function Historic() {
         padding: 0;
         width: 100%;
         height: 100%;
-        overflow: hidden;
+        overflow: ${isMobile ? "auto" : "hidden"};
       }
     `}
       </style>
@@ -61,7 +63,7 @@ export default function Historic() {
           style={{
             maxHeight: "70%",
             minHeight: "70%",
-            width: "30%",
+            width: isMobile ? "90%" : "30%",
           }}
         >
           {}
@@ -70,7 +72,7 @@ export default function Historic() {
             columns={columns}
             initialState={{
               pagination: {
-                paginationModel: { page: 0, pageSize: 10 },
+                paginationModel: { page: 0, pageSize: isMobile ? 8 : 10 },
               },
             }}
             disableColumnMenu

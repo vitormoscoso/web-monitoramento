@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import CardComponent from "../components/CardComponent";
 import Header from "../components/Header";
 import { useGetLastData } from "../service/useGetLastData";
+import { useMediaQuery } from "react-responsive";
 
 export default function Home() {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const [currentData, setCurrentData] = useState<any>({});
 
   async function getCurrentData() {
@@ -24,7 +26,7 @@ export default function Home() {
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            overflow: ${ isMobile ? "auto" : "hidden"};
           }
         `}
       </style>

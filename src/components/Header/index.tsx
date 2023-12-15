@@ -10,8 +10,10 @@ import {
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
+import { useMediaQuery } from "react-responsive";
 
 export default function Header() {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
 
@@ -50,7 +52,9 @@ export default function Header() {
             onClick={handleMenu}
             color="inherit"
           >
-            <AccountCircleIcon sx={{ fontSize: "1.5vw" }} />
+            <AccountCircleIcon
+              sx={{ fontSize: isMobile ? "6vw" : "1.5vw" }}
+            />
           </IconButton>
           <Menu
             id="menu-appbar"

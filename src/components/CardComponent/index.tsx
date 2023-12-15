@@ -1,7 +1,9 @@
 import { Button, Divider, Paper, Typography } from "@mui/material";
+import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom";
 
 export default function CardComponent({ data }: any) {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const navigate = useNavigate();
   return (
     <Paper
@@ -12,7 +14,8 @@ export default function CardComponent({ data }: any) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        width: "20%",
+        width: isMobile ? "90%" : "20%", // Largura ajustável para dispositivos móveis
+        maxWidth: "400px", // Limita a largura máxima em dispositivos maiores
       }}
     >
       <Typography
