@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {
   AppBar,
-  Toolbar,
-  Typography,
   IconButton,
   Menu,
   MenuItem,
+  Toolbar,
+  Typography,
 } from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -20,10 +23,21 @@ export default function Header() {
     setAnchorEl(null);
   };
 
+  const handleLogout = () => {
+    auth.signOut();
+    navigate(`/`);
+  };
+
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ flexGrow: 1 }}
+          onClick={() => navigate(`/home`)}
+          style={{ cursor: "pointer" }}
+        >
           Monitoramento
         </Typography>
         <div>
@@ -36,13 +50,13 @@ export default function Header() {
             onClick={handleMenu}
             color="inherit"
           >
-            <AccountCircleIcon sx={{fontSize: "1.5vw"}}/>
+            <AccountCircleIcon sx={{ fontSize: "1.5vw" }} />
           </IconButton>
           <Menu
             id="menu-appbar"
             anchorEl={anchorEl}
             anchorOrigin={{
-              vertical: "top",
+              vertical: "bottom",
               horizontal: "right",
             }}
             keepMounted
@@ -53,14 +67,7 @@ export default function Header() {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem
-              onClick={() => {
-                handleClose();
-                console.log("Sair");
-              }}
-            >
-              Sair
-            </MenuItem>
+            <MenuItem onClick={() => handleLogout()}>Sair</MenuItem>
           </Menu>
         </div>
       </Toolbar>
