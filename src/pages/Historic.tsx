@@ -1,15 +1,24 @@
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
+import Header from "../components/Header";
 import { DataItem, getAllData } from "../service/GetAllData";
+
+const columns: GridColDef<DataItem>[] = [
+  {
+    field: "value",
+    headerName: "Valor",
+    flex: 1,
+    align: "left",
+    headerAlign: "left",
+  },
+  {
+    field: "timestamp",
+    headerName: "Data",
+    flex: 1,
+    align: "right",
+    headerAlign: "right",
+  },
+];
 
 export default function Historic() {
   const [data, setData] = useState<DataItem[]>([]);
@@ -21,34 +30,53 @@ export default function Historic() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, []);  
 
   return (
-    <TableContainer
-      component={Paper}
-      sx={{ maxWidth: "40%", margin: "auto", marginTop: 4 }}
-    >
-      <Typography variant="h6" sx={{ padding: 2 }}>
-        Histórico de Medições
-      </Typography>
-      <Table aria-label="tabela de medições">
-        <TableHead>
-          <TableRow>
-            <TableCell>Valor</TableCell>    
-            <TableCell align="right">Data</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data?.map((el: any) => (
-            <TableRow key={el?.id}>
-              <TableCell component="th" scope="row">
-                {el?.value}
-              </TableCell>
-              <TableCell align="right">{el?.timestamp}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <style>
+        {`
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+    `}
+      </style>
+      <Header />
+      <div
+        style={{
+          height: "100vh",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          backgroundColor: "whitesmoke",
+        }}
+      >
+        <h3>Histórico de medições</h3>
+        <div
+          style={{
+            maxHeight: "70%",
+            minHeight: "70%",
+            width: "30%",
+          }}
+        >
+          {}
+          <DataGrid
+            rows={data}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+            disableColumnMenu
+          />
+        </div>
+      </div>
+    </>
   );
 }
