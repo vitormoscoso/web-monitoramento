@@ -6,9 +6,9 @@ import Historic from "./pages/Historic";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/historico" element={<Historic />} />
+      <Route path="/web-monitoramento/" element={<Login />} />
+      <Route path="/web-monitoramento/home" element={<Home />} />
+      <Route path="/web-monitoramento/historico" element={<Historic />} />
     </Routes>
   );
 }

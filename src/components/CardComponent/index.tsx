@@ -39,7 +39,7 @@ export default function CardComponent({ data }: any) {
       >
         {data?.timestamp}
       </Typography>
-      <Button sx={{ marginTop: 1 }} onClick={() => navigate(`/historico`)}>
+      <Button sx={{ marginTop: 1 }} onClick={() => navigate(`/web-monitoramento/historico`)}>
         Histórico
       </Button>
     </Paper>

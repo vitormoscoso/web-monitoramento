@@ -27,7 +27,7 @@ export default function Header() {
 
   const handleLogout = () => {
     auth.signOut();
-    navigate(`/`);
+    navigate(`/web-monitoramento/`);
   };
 
   return (
@@ -37,7 +37,7 @@ export default function Header() {
           variant="h6"
           component="div"
           sx={{ flexGrow: 1 }}
-          onClick={() => navigate(`/home`)}
+          onClick={() => navigate(`/web-monitoramento/home`)}
           style={{ cursor: "pointer" }}
         >
           Monitoramento

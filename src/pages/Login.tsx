@@ -28,7 +28,7 @@ export default function Login() {
       //   password
       // );
       await signInWithEmailAndPassword(auth, email, password);
-      navigate(`/home`);
+      navigate(`/web-monitoramento/home`);
     } catch (error) {
       if (error instanceof Error && "code" in error) {
         let message;
