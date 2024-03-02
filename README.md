@@ -1,30 +1,49 @@
-# React + TypeScript + Vite
+# Septic Tank Level Monitoring System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This project is a web-based application designed to monitor and display the levels of a septic tank using ultrasonic sensor data. The application retrieves data stored in Firebase Firestore, presenting real-time measurements as well as historical data. It features a user authentication system, allowing secure access to the data.
 
-Currently, two official plugins are available:
+## Features
+- **Real-Time Data Visualization**: Displays the current level measured by the ultrasonic sensor in the septic tank.
+- **Historical Data Review**: Users can review past measurements to analyze trends over time.
+- **Secure Authentication**: Utilizes Firebase Authentication to manage user access, ensuring that data is protected and only accessible to authorized users.
+- **Responsive Design**: The site is fully responsive, providing an optimal viewing experience across a wide range of devices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+- **Firebase Firestore**: For storing and retrieving sensor data.
+- **Firebase Authentication**: For managing user login functionality.
+- **ReactTS/Vite**: For frontend development.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
+- A Firebase project for storing sensor data and managing authentication.
+- Node.js and npm installed on your machine.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### Setup
+1. Clone the repository to your local machine:
+```bash
+git clone https://github.com/vitormoscoso/web-monitoramento.git
 ```
+2. Navigate to the project directory:
+```bash
+cd web-monitoramento
+```
+3. Install the necessary dependencies:
+```bash
+npm install
+```
+4. Set up your Firebase project details in a `.env` file at the root of the project directory.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Running the Application
+1. Start the application:
+```bash
+npm start
+```
+2. Open your web browser and navigate to `http://localhost:3000` to view the application.
+
+## Contributing
+Contributions to this project are welcome. Please feel free to fork the repository, make changes, and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
